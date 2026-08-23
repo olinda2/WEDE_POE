@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skip the queue! Pre-order your favourite Veloce Espresso drinks and food online for quick pickup.">
+    <title>Pre-Order | Veloce Espresso</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="https://placehold.co/150x50?text=Veloce+Logo" alt="Veloce Espresso Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="pre-order.html">Pre-Order</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Pre-Order & Skip the Queue</h1>
+        <p>Use the form below to place your order ahead of time. We will have it ready for you when you arrive.</p>
+
+        <!-- HTML Form with client-side validation -->
+        <form action="#" method="POST">
+            <fieldset>
+                <legend>Customer Details</legend>
+                
+                <label for="fname">Full Name:</label><br>
+                <input type="text" id="fname" name="fname" required><br><br>
+
+                <label for="email">Email Address:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+                
+                <label for="phone">Phone Number:</label><br>
+                <input type="tel" id="phone" name="phone" required><br><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Order Details</legend>
+                
+                <label for="item">Select Primary Item:</label><br>
+                <select id="item" name="item" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="espresso">Classic Espresso</option>
+                    <option value="cappuccino">Cappuccino</option>
+                    <option value="rooibos">Rooibos Tea</option>
+                    <option value="croissant">Butter Croissant</option>
+                    <option value="sandwich">Chicken Mayo Sandwich</option>
+                </select><br><br>
+
+                <label for="pickup-time">Preferred Pickup Time:</label><br>
+                <input type="time" id="pickup-time" name="pickup-time" required><br><br>
+
+                <label for="notes">Special Instructions (Optional):</label><br>
+                <textarea id="notes" name="notes" rows="4" cols="50" placeholder="E.g., Extra shot, almond milk..."></textarea><br><br>
+            </fieldset>
+
+            <button type="submit" class="submit-btn">Place Pre-Order</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Veloce Espresso. All rights reserved.</p>
+        <nav>
+            <ul>
+                <li><a href="contact.html">Find Us</a></li>
+                <li><a href="about.html">Our Story</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+</html>

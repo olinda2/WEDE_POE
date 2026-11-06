@@ -3,9 +3,11 @@ Name: Deolinda Mavungo
 
 Student Number: ST10518726
 
-DISD0601 - WEDE5020: Part 1 & 2
+DISD0601 - WEDE5020: Part 1 - 2 - 3 (POE)
 
 Github Repository: https://github.com/olinda2/WEDE_POE/
+
+Netlify: https://veloce-espresso.netlify.app
 
 # Project Overview
 Veloce Espresso is a fictional, independent coffee shop with a passion for ethically sourced coffee and a desire to create a warm, welcoming community space. This project aims to build the company's first online presence. The website will serve as a digital storefront, reflecting the cozy and modern aesthetic of the physical shop, providing essential information, and enabling customers to pre-order for pickup.
@@ -53,6 +55,9 @@ This submission coverd the initial planning and setup phase of the project, incl
 # Part 2 Details
 This submission covers the visual design phase of the project: an external stylesheet (css/styles.css) linked to every page, applying the brand's colour palette, typography, layout and decorative styling for desktop, plus a responsive layout for tablet and mobile screen sizes.
 
+# Part 3 Details
+This last submission completes the final part of the POE with new modifications such as: interactive features, more security functions, proper forms, Optimazed SEO and deployment. The site still works without JavaScript (the menu, addresses and opening hours stay readable), it just makes it better.
+
 # Screenshots
 - Desktop
 
@@ -77,6 +82,8 @@ This sitemap outlines the structure and hierarchy of the website's pages.
 
 - Call to Action (View Menu, Pre-Order)
 
+- Photo gallery with lightbox
+
 - Navigation Menu (to all other pages)
 
 - Footer
@@ -86,6 +93,8 @@ This sitemap outlines the structure and hierarchy of the website's pages.
 - Categorized list of items (e.g., Coffee, Tea, Pastries, Sandwiches)
 
 - Item descriptions and prices
+
+- Search, category filter and sorting
 
 **About Us (about.html):**
 
@@ -97,19 +106,23 @@ This sitemap outlines the structure and hierarchy of the website's pages.
 
 **Contact (contact.html):**
 
-- Map
+- Interactive Map
 
-- Address & Phone Number
+- Address, Phone Number and Email
 
 - Opening Hours
 
-- Contact Inquiry Form
+- Contact Inquiry Form (Updated)
+
+- FAQ accordion
 
 **Pre-Order (pre-order.html):**
 
-- Item selection form
+- Item selection form (Updated)
 
-- Pickup time selector
+- Pickup date and time selector (Updated)
+
+- Price and availability
 
 - Online payment integration (future functionality)
 
@@ -117,6 +130,8 @@ This sitemap outlines the structure and hierarchy of the website's pages.
 - 2026-08-14: Initialized project. Created README.md file and project structure. Pushed initial commits to remote repository.
 
 - 2026-09-19: Setup the website styles and layout rules. Fixed broken stylesheet link left over from Part 1. Added Google Fonts link to all pages. Added CSS reset, root colour/typography variables, header/nav, buttons, forms, page-specific layouts and footer styling. Implemented responsive design with two media query breakpoints (768px tablet, 480px mobile) covering layout, typography, navigation and images.
+
+- 2026-11-02: images renamed with descriptive names (Part 2 feedback). Refactored the stylesheet and logics of the website (lightbox, accordion, interactive map, menu search, form errors(handling), animations, etc). Added a photo gallery with a lightbox to the home page. The menu page now has a search, category filter and sorting feature (The plain HTML menu stays as a backup if the file cannot load). Implemented FAQ accordion and scroll animations. Rebuilt the pre-order form and implemented some features using AJAX request with fetch(). Replaced the map placeholders and Developed an interactive map (using Leaflet) as well as Improved the buttons and form on contact page (Added validation functions like a compiled email with preview and more). For SEO I Added new title tags, meta descriptions and keywords, links, OpenGraph tags, JSON structured data, internal links in the page text, favicon, "robots" and "sitemap" files. For Security was added a Content Security Policy tag to every page and a "headers" file for Netlify. And last but not least, Deployed the website on Netlify.
 
 # References
 - Sudra, Ashish. 2025. How to create a coffee shop website? Step-by-Step Guide. [online] Available at: https://deonde.co/blog/how-to-create-a-coffee-shop-website/ [Accessed 14 August 2026].
@@ -144,3 +159,27 @@ This sitemap outlines the structure and hierarchy of the website's pages.
 - Freepik, 2026. user18989612: A classic chicken salad sandwich served with a side of coleslaw. [electronic print]. Available at: https://www.magnific.com/premium-ai-image/classic-chicken-salad-sandwich-served-with-side-coleslaw_158992129.htm#fromView=search&page=3&position=32&uuid=9fd9fe24-3da0-44ac-b8f6-2195519cbf86&track=ais_hybrid&query=Chicken+Mayo+Sandwich [Accessed 18 September 2026].
 
 - Freepik, 2026. fxquadro: Two young multiracial baristas in aprons standing welcomingly at their trendy coffee. [electronic print]. Available at: https://www.magnific.com/free-photo/two-young-multiracial-baristas-aprons-standing-welcomingly-their-trendy-coffee-shop_29505810.htm#fromView=search&page=2&position=22&uuid=433376b9-477e-499b-93f7-19c01bc51f82&track=ais_hybrid&query=coffee+shop+restaurant+origin [Accessed 18 September 2026].
+
+- Google Search Central. 2026. SEO Starter Guide. [online] Available at: https://developers.google.com/search/docs/fundamentals/seo-starter-guide [Accessed 1 November 2026].
+
+- Agafonkin, V. 2023. Leaflet 1.9.4. [online] Available at: https://leafletjs.com/ [Accessed 1 November 2026].
+
+- World Wide Web Consortium, 2026. Accordion Pattern. WAI-ARIA Authoring Practices Guide. [online] Available at: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/ [Accessed 1 November 2026].
+ 
+- OpenStreetMap contributors, 2026. Copyright and License. [online] Available at: https://www.openstreetmap.org/copyright [Accessed 1 November 2026].
+
+- Mozilla Developer Network, 2026a. Client-side form validation. [online] Available at: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation [Accessed 2 November 2026].
+
+- Mozilla Developer Network, 2026b. Using the Fetch API. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch [Accessed 2 November 2026].
+
+- Mozilla Developer Network, 2026c. The Dialog element. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog [Accessed 2 November 2026].
+
+- Mozilla Developer Network, 2026d. Intersection Observer API. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API [Accessed 2 November 2026].
+
+- Netlify, 2026. Netlify Docs. [online] Available at: https://docs.netlify.com/ [Accessed 2 November 2026].
+
+- Schema.org, 2026. CafeOrCoffeeShop. [online] Available at: https://schema.org/CafeOrCoffeeShop [Accessed 2 November 2026].
+
+- Sitemaps.org, 2026. Sitemaps XML format. [online] Available at: https://www.sitemaps.org/protocol.html [Accessed 2 November 2026].
+
+- Typicode, 2026. JSONPlaceholder - Free fake REST API. [online] Available at: https://jsonplaceholder.typicode.com/ [Accessed 2 November 2026].

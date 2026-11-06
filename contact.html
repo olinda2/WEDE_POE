@@ -3,91 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Veloce Espresso. Find our store locations, operating hours, contact us.">
-    <title>Contact Us | Veloce Espresso</title>
-    <!-- Google Fonts: Inter for body text, Playfair Display for headings/branding -->
+
+    <!-- Security - only allow scripts, styles, fonts and images from the places this site really uses -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+
+    <!-- SEO - title, description, keywords and robots instructions for search engines -->
+    <title>Contact &amp; Branch Locations | Veloce Espresso</title>
+    <meta name="description" content="Find Veloce Espresso's City Centre and Campus branches, see opening hours, view the map, or send us a message.">
+    <meta name="keywords" content="contact Veloce Espresso, cafe locations, coffee shop near me, opening hours, Johannesburg, branch map, message us">
+    <meta name="author" content="Veloce Espresso">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2F4F3E">
+    <link rel="canonical" href="https://veloce-espresso.netlify.app/contact.html">
+
+    <!-- Social media sharing preview (Open Graph + Twitter) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Veloce Espresso">
+    <meta property="og:title" content="Contact &amp; Branch Locations | Veloce Espresso">
+    <meta property="og:description" content="Find Veloce Espresso's City Centre and Campus branches, see opening hours, view the map, or send us a message.">
+    <meta property="og:url" content="https://veloce-espresso.netlify.app/contact.html">
+    <meta property="og:image" content="https://veloce-espresso.netlify.app/images/veloce-espresso-social-share.jpg">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Icons(logo) shown in the browser tab and on phone screens -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Google Fonts - Inter for body text, Playfair Display for headings/branding -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="js/vendor/leaflet/leaflet.css">
+
+    <!-- Structured data for both branches (address, hours and map) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CafeOrCoffeeShop",
+                "name": "Veloce Espresso - City Centre",
+                "url": "https://veloce-espresso.netlify.app/contact.html",
+                "image": "https://veloce-espresso.netlify.app/images/veloce-espresso-social-share.jpg",
+                "telephone": "+27115550198",
+                "email": "hello@velocespresso.co.za",
+                "priceRange": "R",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "123 Main Road, City Centre",
+                    "addressLocality": "Johannesburg",
+                    "addressRegion": "Gauteng",
+                    "postalCode": "2000",
+                    "addressCountry": "ZA"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -26.2041,
+                    "longitude": 28.0473
+                },
+                "openingHoursSpecification": [
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday"
+                        ],
+                        "opens": "06:00",
+                        "closes": "18:00"
+                    },
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "Saturday",
+                            "Sunday"
+                        ],
+                        "opens": "07:00",
+                        "closes": "15:00"
+                    }
+                ]
+            },
+            {
+                "@type": "CafeOrCoffeeShop",
+                "name": "Veloce Espresso - Campus",
+                "url": "https://veloce-espresso.netlify.app/contact.html",
+                "image": "https://veloce-espresso.netlify.app/images/veloce-espresso-social-share.jpg",
+                "telephone": "+27115550198",
+                "email": "hello@velocespresso.co.za",
+                "priceRange": "R",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "45 Campus Way, University District",
+                    "addressLocality": "Johannesburg",
+                    "addressRegion": "Gauteng",
+                    "postalCode": "2050",
+                    "addressCountry": "ZA"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -26.1929,
+                    "longitude": 28.0305
+                },
+                "openingHoursSpecification": [
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday"
+                        ],
+                        "opens": "07:00",
+                        "closes": "20:00"
+                    },
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "Saturday"
+                        ],
+                        "opens": "08:00",
+                        "closes": "14:00"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 
+    <!-- Lets keyboard and screen reader users jump past the menu -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Header containing the logo and main navigation -->
     <header>
         <div class="logo">
-            <img src="images/ve-logo-watermark.png" alt="Veloce Espresso Logo">
+            <a href="index.html"><img src="images/veloce-espresso-logo.png" alt="Veloce Espresso Logo - go to the home page" width="500" height="406"></a>
         </div>
-        <nav>
+        <nav aria-label="Main navigation">
             <ul>
+                <!-- Navigation links to all pages. aria-current marks the page you are on -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="pre-order.html">Pre-Order</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <h1>Contact Us</h1>
-        <p>We'd love to hear from you! Reach out via the form below or visit us at one of our locations.</p>
+        <p>If you have any questions, feedback or ideas, we would love to hear from you. Feel free to reach out.</p>
 
-        <!-- General Contact Info -->
+        <!-- Section for general contact information -->
         <section class="contact-info">
             <h2>Get in Touch</h2>
-            <p><strong>Email:</strong> hello@velocespresso.co.za</p>
-            <p><strong>Phone:</strong> +27 11 555 0198</p>
+            <p><strong>Email:</strong> <a href="mailto:hello@velocespresso.co.za">hello@velocespresso.co.za</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+27115550198">+27 11 555 0198</a></p>
         </section>
 
-        <!-- Locations Section -->
+        <!-- Section for the branch locations (The map below shows both branches) -->
         <section class="locations">
             <h2>Our Locations</h2>
-            
+
             <article class="branch">
                 <h3>Main Branch - City Centre</h3>
-                <p>123 Main Road, City Centre, 2000</p>
-                <p><strong>Hours:</strong> Mon - Fri: 06:00 - 18:00 | Sat - Sun: 07:00 - 15:00</p>
-                <!-- External Service Integration Placeholder (Google Maps Location) -->
-                <img src="https://placehold.co/600x300?text=Google+Map+Location+1" alt="Map indicating City Centre branch">
+                <address>123 Main Road, City Centre, 2000</address>
+                <p><strong>Hours:</strong> Mon-Fri: 06:00 - 18:00 | Sat-Sun: 07:00 - 15:00</p>
+                <p class="open-status" data-status-for="city-centre"></p>
+                <p class="branch-actions">
+                    <button type="button" class="secondary-button" data-show-on-map="city-centre">Show on map</button>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-26.2041,28.0473" target="_blank" rel="noopener noreferrer">Get directions</a>
+                </p>
             </article>
 
             <article class="branch">
                 <h3>Campus Branch - University District</h3>
-                <p>45 Campus Way, University District, 2050</p>
-                <p><strong>Hours:</strong> Mon - Fri: 07:00 - 20:00 | Sat: 08:00 - 14:00 (Closed Sundays)</p>
-                <!-- External Service Integration Placeholder (Google Maps Location) -->
-                <img src="https://placehold.co/600x300?text=Google+Map+Location+2" alt="Map indicating Campus branch">
+                <address>45 Campus Way, University District, 2050</address>
+                <p><strong>Hours:</strong> Mon-Fri: 07:00 - 20:00 | Sat: 08:00 - 14:00 | Sun: Closed</p>
+                <p class="open-status" data-status-for="campus"></p>
+                <p class="branch-actions">
+                    <button type="button" class="secondary-button" data-show-on-map="campus">Show on map</button>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-26.1929,28.0305" target="_blank" rel="noopener noreferrer">Get directions</a>
+                </p>
             </article>
+
+            <!-- Interactive map -->
+            <div id="branch-map" class="map" role="region" aria-label="Map showing both Veloce Espresso branches">
+                <noscript>
+                    <p>The interactive map needs JavaScript. You can still see our branches on OpenStreetMap:
+                        <a href="https://www.openstreetmap.org/?mlat=-26.2041&amp;mlon=28.0473#map=16/-26.2041/28.0473" target="_blank" rel="noopener noreferrer">City Centre</a> |
+                        <a href="https://www.openstreetmap.org/?mlat=-26.1929&amp;mlon=28.0305#map=16/-26.1929/28.0305" target="_blank" rel="noopener noreferrer">Campus</a>.</p>
+                </noscript>
+            </div>
         </section>
 
-        <!-- Contact Form -->
+        <!-- Section for the contact form -->
         <section class="contact-form-section">
-            <h2>Send us a Message</h2>
-            <form action="#" method="POST">
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" name="name" required><br><br>
+            <h2>Send Us a Message</h2>
+            <form id="contact-form" action="#" method="post">
+                <div class="form-summary" id="contact-summary" role="alert" hidden></div>
 
-                <label for="email-contact">Email:</label><br>
-                <input type="email" id="email-contact" name="email-contact" required><br><br>
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="name-error">
+                    <span class="error-message" id="name-error"></span>
+                </div>
 
-                <label for="message">Message:</label><br>
-                <textarea id="message" name="message" rows="5" required></textarea><br><br>
+                <div class="form-group">
+                    <label for="email-contact">Email address</label>
+                    <input type="email" id="email-contact" name="email" autocomplete="email" required aria-describedby="email-contact-error">
+                    <span class="error-message" id="email-contact-error"></span>
+                </div>
 
-                <button type="submit">Send Message</button>
+                <div class="form-group">
+                    <label for="phone-contact">Phone number (optional)</label>
+                    <input type="tel" id="phone-contact" name="phone" autocomplete="tel" placeholder="e.g. 082 123 4567" aria-describedby="phone-contact-error">
+                    <span class="error-message" id="phone-contact-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message-type">Type of message</label>
+                    <select id="message-type" name="message-type" required aria-describedby="message-type-error">
+                        <option value="">Choose a type</option>
+                        <option value="General question">General question</option>
+                        <option value="Feedback or compliment">Feedback or compliment</option>
+                        <option value="Complaint">Complaint</option>
+                        <option value="Catering or event enquiry">Catering or event enquiry</option>
+                        <option value="Supplier or partnership">Supplier or partnership</option>
+                        <option value="Jobs at Veloce Espresso">Jobs at Veloce Espresso</option>
+                    </select>
+                    <span class="error-message" id="message-type-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your message</label>
+                    <textarea id="message" name="message" rows="6" maxlength="1100" required aria-describedby="message-counter message-error"></textarea>
+                    <span class="field-hint" id="message-counter"></span>
+                    <span class="error-message" id="message-error"></span>
+                </div>
+
+                <button type="submit" class="submit-btn">Create my email</button>
             </form>
+
+            <!-- The compiled email appears here once the form is valid -->
+            <section class="form-response" id="email-preview" tabindex="-1" aria-live="polite" hidden></section>
+        </section>
+
+        <!-- Frequently asked questions (accordion) -->
+        <section class="faq" aria-labelledby="faq-heading">
+            <h2 id="faq-heading">Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <h3>
+                        <button type="button" class="accordion-trigger" id="faq-1-button" aria-expanded="false" aria-controls="faq-1-panel">How does pre-ordering work?</button>
+                    </h3>
+                    <div class="accordion-panel" id="faq-1-panel" role="region" aria-labelledby="faq-1-button">
+                        <div class="accordion-panel-inner"><p>Choose your branch, item, and pickup date and time on our <a href="pre-order.html">pre-order page</a>. You pay at the counter when you collect.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3>
+                        <button type="button" class="accordion-trigger" id="faq-2-button" aria-expanded="false" aria-controls="faq-2-panel">Do you have plant-based milk?</button>
+                    </h3>
+                    <div class="accordion-panel" id="faq-2-panel" role="region" aria-labelledby="faq-2-button">
+                        <div class="accordion-panel-inner"><p>Yes. You can add oat or almond milk to a cappuccino or Rooibos tea for extra R8.00.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3>
+                        <button type="button" class="accordion-trigger" id="faq-3-button" aria-expanded="false" aria-controls="faq-3-panel">Is your coffee ethically sourced?</button>
+                    </h3>
+                    <div class="accordion-panel" id="faq-3-panel" role="region" aria-labelledby="faq-3-button">
+                        <div class="accordion-panel-inner"><p>Yes. All of our coffee is 100% ethically sourced, from bean to cup.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3>
+                        <button type="button" class="accordion-trigger" id="faq-4-button" aria-expanded="false" aria-controls="faq-4-panel">Can I study or work at Veloce Espresso?</button>
+                    </h3>
+                    <div class="accordion-panel" id="faq-4-panel" role="region" aria-labelledby="faq-4-button">
+                        <div class="accordion-panel-inner"><p>Of course. Many of our regulars are students and remote workers. The Campus Branch stays open until 20:00 on weekdays.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3>
+                        <button type="button" class="accordion-trigger" id="faq-5-button" aria-expanded="false" aria-controls="faq-5-panel">Do you cater for events?</button>
+                    </h3>
+                    <div class="accordion-panel" id="faq-5-panel" role="region" aria-labelledby="faq-5-button">
+                        <div class="accordion-panel-inner"><p>Send us a message using the form on this page and choose "Catering or event enquiry". We will get back to you as soon as we can.</p></div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Veloce Espresso. All rights reserved.</p>
-        <nav>
-            <ul>
-                <li><a href="contact.html">Find Us</a></li>
-                <li><a href="about.html">Our Story</a></li>
-            </ul>
-        </nav>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="js/vendor/leaflet/leaflet.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/contact.js"></script>
 
 </body>
 </html>

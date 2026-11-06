@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore Veloce Espresso's digital menu. We offer ethically sourced coffee, teas, fresh pastries, and sandwiches.">
-    <title>Menu | Veloce Espresso</title>
-    <!-- Google Fonts: Inter for body text, Playfair Display for headings/branding -->
+
+    <!-- Security - only allow scripts, styles, fonts and images from the places this site really uses -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+
+    <!-- SEO - title, description, keywords and robots instructions for search engines -->
+    <title>Coffee, Tea &amp; Pastries Menu | Veloce Espresso</title>
+    <meta name="description" content="Browse the Veloce Espresso menu: espresso, cappuccino, rooibos tea, butter croissants and toasted sandwiches. Search, filter and pre-order online.">
+    <meta name="keywords" content="coffee menu, espresso, cappuccino, rooibos tea, butter croissant, chicken mayo sandwich, cafe menu prices, pre-order coffee">
+    <meta name="author" content="Veloce Espresso">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2F4F3E">
+    <link rel="canonical" href="https://veloce-espresso.netlify.app/menu.html">
+
+    <!-- Social media sharing preview (Open Graph + Twitter) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Veloce Espresso">
+    <meta property="og:title" content="Coffee, Tea &amp; Pastries Menu | Veloce Espresso">
+    <meta property="og:description" content="Browse the Veloce Espresso menu: espresso, cappuccino, rooibos tea, butter croissants and toasted sandwiches. Search, filter and pre-order online.">
+    <meta property="og:url" content="https://veloce-espresso.netlify.app/menu.html">
+    <meta property="og:image" content="https://veloce-espresso.netlify.app/images/veloce-espresso-social-share.jpg">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Icons(logo) shown in the browser tab and on phone screens -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Google Fonts - Inter for body text, Playfair Display for headings/branding -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,14 +39,19 @@
 </head>
 <body>
 
+    <!-- Lets keyboard and screen reader users jump past the menu -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Header containing the logo and main navigation -->
     <header>
         <div class="logo">
-            <img src="images/ve-logo-watermark.png" alt="Veloce Espresso Logo">
+            <a href="index.html"><img src="images/veloce-espresso-logo.png" alt="Veloce Espresso Logo - go to the home page" width="500" height="406"></a>
         </div>
-        <nav>
+        <nav aria-label="Main navigation">
             <ul>
+                <!-- Navigation links to all pages. aria-current marks the page you are on -->
                 <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
+                <li><a href="menu.html" aria-current="page">Menu</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="pre-order.html">Pre-Order</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -29,65 +59,104 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <h1>Our Menu</h1>
-        <p>Browse our selection of handcrafted beverages and fresh food. All coffee is 100% ethically sourced.</p>
+        <p>Explore our selection of handcrafted beverages and delicious fresh food, made with care and quality ingredients.</p>
 
-        <!-- Categorised Menu: Coffee -->
-        <section class="menu-category">
-            <h2>Coffee</h2>
-            <article class="menu-item">
-                <img src="images/expresso.jpg" alt="Shot of Espresso">
-                <h3>Classic Espresso</h3>
-                <p>A double shot of our signature house blend</p>
-                <span>R 25.00</span>
-            </article>
-            <article class="menu-item">
-                <img src="images/cappuccino.jpg" alt="Cappuccino">
-                <h3>Cappuccino</h3>
-                <p>Espresso with steamed milk and a thick layer of foam</p>
-                <span>R 35.00</span>
-            </article>
-        </section>
+        <!-- Search, filter and sort controls (They stay hidden until menu.js loads the menu) -->
+        <div class="menu-tools" id="menu-tools" role="search" aria-label="Search and filter the menu" hidden>
+            <div class="form-group">
+                <label for="menu-search">Search the menu</label>
+                <input type="search" id="menu-search" name="menu-search" placeholder="Try &quot;tea&quot;, &quot;milk&quot; or &quot;lunch&quot;" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="menu-sort">Sort by</label>
+                <select id="menu-sort" name="menu-sort">
+                    <option value="default">Menu order</option>
+                    <option value="price-asc">Price: low to high</option>
+                    <option value="price-desc">Price: high to low</option>
+                    <option value="name">Name: A to Z</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label" id="filter-label">Category</span>
+                <div class="filter-buttons" id="menu-filters" role="group" aria-labelledby="filter-label"></div>
+            </div>
+            <p class="menu-status" id="menu-status" aria-live="polite"></p>
+        </div>
 
-        <!-- Categorised Menu: Tea -->
-        <section class="menu-category">
-            <h2>Tea</h2>
-            <article class="menu-item">
-                <img src="images/rooibos_tea.jpg" alt="Rooibos Tea">
-                <h3>Rooibos Tea</h3>
-                <p>Locally sourced, organic Rooibos tea</p>
-                <span>R 22.00</span>
-            </article>
-        </section>
+        <!-- The menu. menu.js replaces this with items loaded from data/menu.json.
+             If that fails, this plain HTML version stays on the page as a backup. -->
+        <div id="menu-list">
+            <section class="menu-category">
+                <h2>Coffee</h2>
+                <article class="menu-item">
+                    <img src="images/classic-espresso-cup.jpg" alt="Shot of espresso in a blue-grey cup on a dark marble table" width="740" height="493" loading="lazy">
+                    <div class="menu-item-text">
+                        <h3>Classic Espresso</h3>
+                        <p>A double shot of our signature house blend</p>
+                    </div>
+                    <span class="price">R 25.00</span>
+                </article>
+                <article class="menu-item">
+                    <img src="images/cappuccino-latte-art-white-cup.jpg" alt="Cappuccino with latte art in a white cup on a wooden table" width="700" height="377" loading="lazy">
+                    <div class="menu-item-text">
+                        <h3>Cappuccino</h3>
+                        <p>Espresso with steamed milk and a thick layer of foam</p>
+                    </div>
+                    <span class="price">R 35.00</span>
+                </article>
+            </section>
 
-        <!-- Categorised Menu: Pastries & Sandwiches -->
-        <section class="menu-category">
-            <h2>Pastries & Sandwiches</h2>
-            <article class="menu-item">
-                <img src="images/croissant.jpg" alt="Butter Croissant">
-                <h3>Butter Croissant</h3>
-                <p>Freshly baked every morning</p>
-                <span>R 30.00</span>
-            </article>
-            <article class="menu-item">
-                <img src="images/sandwich.jpg" alt="Chicken Mayo Sandwich">
-                <h3>Chicken Mayo Sandwich</h3>
-                <p>Toasted on artisanal sourdough bread</p>
-                <span>R 55.00</span>
-            </article>
-        </section>
+            <section class="menu-category">
+                <h2>Tea</h2>
+                <article class="menu-item">
+                    <img src="images/rooibos-tea-glass-cup.jpg" alt="Glass cup of red rooibos tea on a saucer" width="740" height="740" loading="lazy">
+                    <div class="menu-item-text">
+                        <h3>Rooibos Tea</h3>
+                        <p>Locally sourced, organic Rooibos tea</p>
+                    </div>
+                    <span class="price">R 22.00</span>
+                </article>
+            </section>
+
+            <section class="menu-category">
+                <h2>Pastries &amp; Sandwiches</h2>
+                <article class="menu-item">
+                    <img src="images/butter-croissant-on-plate.jpg" alt="Golden butter croissant served on a plate with butter" width="740" height="740" loading="lazy">
+                    <div class="menu-item-text">
+                        <h3>Butter Croissant</h3>
+                        <p>Freshly baked every morning</p>
+                    </div>
+                    <span class="price">R 30.00</span>
+                </article>
+                <article class="menu-item">
+                    <img src="images/chicken-mayo-sandwich.jpg" alt="Toasted chicken mayo sandwich with salad on a white plate" width="740" height="493" loading="lazy">
+                    <div class="menu-item-text">
+                        <h3>Chicken Mayo Sandwich</h3>
+                        <p>Toasted on artisanal sourdough bread</p>
+                    </div>
+                    <span class="price">R 55.00</span>
+                </article>
+            </section>
+        </div>
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Veloce Espresso. All rights reserved.</p>
-        <nav>
+        <nav aria-label="Footer navigation">
             <ul>
                 <li><a href="contact.html">Find Us</a></li>
                 <li><a href="about.html">Our Story</a></li>
             </ul>
         </nav>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/menu.js"></script>
 
 </body>
 </html>

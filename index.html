@@ -3,26 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Veloce Espresso - Your neighbourhood's destination for quality coffee and community.">
+
+    <!-- Security - only allow scripts, styles, fonts and images from the places this site really uses -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+
+    <!-- SEO - title, description, keywords and robots instructions for search engines -->
+    <title>Veloce Espresso | Ethically Sourced Coffee &amp; Community</title>
+    <meta name="description" content="Veloce Espresso is an independent coffee shop serving ethically sourced coffee, tea and fresh pastries. View our menu or pre-order for quick pickup.">
+    <meta name="keywords" content="Veloce Espresso, coffee shop, ethically sourced coffee, espresso, cappuccino, rooibos tea, pastries, pre-order coffee, Johannesburg, South Africa">
+    <meta name="author" content="Veloce Espresso">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2F4F3E">
+    <link rel="canonical" href="https://veloce-espresso.netlify.app/index.html">
+
+    <!-- Social media sharing preview (Open Graph + Twitter) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Veloce Espresso">
+    <meta property="og:title" content="Veloce Espresso | Ethically Sourced Coffee &amp; Community">
+    <meta property="og:description" content="Veloce Espresso is an independent coffee shop serving ethically sourced coffee, tea and fresh pastries. View our menu or pre-order for quick pickup.">
+    <meta property="og:url" content="https://veloce-espresso.netlify.app/index.html">
+    <meta property="og:image" content="https://veloce-espresso.netlify.app/images/veloce-espresso-social-share.jpg">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Icons(logo) shown in the browser tab and on phone screens -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
     <!-- Google Fonts: Inter for body text, Playfair Display for headings/branding -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
-    <title>Home | Veloce Espresso</title>
+
+    <!-- Structured data - helps search engines understand the business -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "Veloce Espresso",
+        "url": "https://veloce-espresso.netlify.app/",
+        "logo": "https://veloce-espresso.netlify.app/images/veloce-espresso-logo.png",
+        "image": "https://veloce-espresso.netlify.app/images/veloce-espresso-social-share.jpg",
+        "description": "Independent coffee shop serving ethically sourced coffee, tea, fresh pastries and sandwiches.",
+        "foundingDate": "2024",
+        "email": "hello@velocespresso.co.za",
+        "telephone": "+27115550198",
+        "servesCuisine": "Coffee, tea, pastries and sandwiches",
+        "priceRange": "R",
+        "hasMenu": "https://veloce-espresso.netlify.app/menu.html"
+    }
+    </script>
 </head>
 <body>
+
+    <!-- Lets keyboard and screen reader users jump past the menu -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <!-- Header containing the logo and main navigation -->
     <header>
         <div class="logo">
-            <img src="images/ve-logo-watermark.png" alt="Veloce Espresso Logo">
+            <a href="index.html"><img src="images/veloce-espresso-logo.png" alt="Veloce Espresso Logo - go to the home page" width="500" height="406"></a>
         </div>
-        <nav>
+        <nav aria-label="Main navigation">
             <ul>
-                <!-- Navigation links to all pages -->
-                <li><a href="index.html">Home</a></li>
+                <!-- Navigation links to all pages. aria-current marks the page you are on -->
+                <li><a href="index.html" aria-current="page">Home</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="pre-order.html">Pre-Order</a></li>
@@ -32,7 +79,7 @@
     </header>
 
     <!-- Homepage content -->
-    <main>
+    <main id="main-content">
         <!-- Hero Section with a banner image and Call to Action (CTA) -->
         <section class="hero">
             <h1>Welcome to Veloce Espresso</h1>
@@ -42,26 +89,70 @@
             <a href="menu.html" class="cta-button">View Our Menu</a>
             <a href="pre-order.html" class="cta-button">Order Ahead</a>
             <br><br><br>
-            <img src="images/hero.png" alt="Inside our cozy coffee shop">
+            <img src="images/barista-pouring-latte-art.jpg" alt="Barista pouring steamed milk into a cup to make latte art" width="1600" height="666" fetchpriority="high">
         </section>
 
         <!-- Brief introduction section -->
         <section class="intro">
             <h2>A Unique Taste of Coffee Experience</h2>
             <p>Whether you are a student looking for a quiet place to study, a remote worker needing a change of scenery, or a resident seeking a friendly local spot, Veloce Espresso is here for you. Enjoy our warm, earthy atmosphere, high-quality brews, and freshly baked pastries.</p>
+            <p>Not sure where to find us? See our branch locations <a href="contact.html">here</a>.</p>
+        </section>
+
+        <!-- Photo gallery - Clicking a photo opens it in a lightbox -->
+        <section class="gallery-section" aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading">A Look Inside Veloce Espresso</h2>
+            <p>Click a photo to see it bigger.</p>
+            <ul class="gallery">
+                <li>
+                    <a href="images/customer-enjoying-coffee-in-cafe.jpg" data-caption="A guest enjoying a cup of coffee in our caf&eacute;">
+                        <img src="images/customer-enjoying-coffee-in-cafe.jpg" alt="Woman standing in a bright caf&eacute; holding a cup and saucer" width="740" height="492" loading="lazy">
+                    </a>
+                </li>
+                <li>
+                    <a href="images/cappuccino-latte-art-white-cup.jpg" data-caption="Our cappuccino, finished with latte art">
+                        <img src="images/cappuccino-latte-art-white-cup.jpg" alt="Cappuccino with latte art in a white cup on a wooden table" width="700" height="377" loading="lazy">
+                    </a>
+                </li>
+                <li>
+                    <a href="images/butter-croissant-on-plate.jpg" data-caption="Butter croissants, baked fresh every morning">
+                        <img src="images/butter-croissant-on-plate.jpg" alt="Golden butter croissant served on a plate with butter" width="740" height="740" loading="lazy">
+                    </a>
+                </li>
+                <li>
+                    <a href="images/classic-espresso-cup.jpg" data-caption="Classic espresso from our signature house blend">
+                        <img src="images/classic-espresso-cup.jpg" alt="Shot of espresso in a blue-grey cup on a dark marble table" width="740" height="493" loading="lazy">
+                    </a>
+                </li>
+                <li>
+                    <a href="images/rooibos-tea-glass-cup.jpg" data-caption="Locally sourced, organic Rooibos tea">
+                        <img src="images/rooibos-tea-glass-cup.jpg" alt="Glass cup of red rooibos tea on a saucer with loose leaves" width="740" height="740" loading="lazy">
+                    </a>
+                </li>
+                <li>
+                    <a href="images/chicken-mayo-sandwich.jpg" data-caption="Toasted chicken mayo sandwich on sourdough">
+                        <img src="images/chicken-mayo-sandwich.jpg" alt="Toasted chicken mayo sandwich with salad on a white plate" width="740" height="493" loading="lazy">
+                    </a>
+                </li>
+            </ul>
         </section>
     </main>
 
-    <!-- Footer containing copyright and basic links -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Veloce Espresso. All rights reserved.</p>
-        <nav>
+        <nav aria-label="Footer navigation">
             <ul>
                 <li><a href="contact.html">Find Us</a></li>
                 <li><a href="about.html">Our Story</a></li>
             </ul>
         </nav>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/gallery.js"></script>
 
 </body>
 </html>

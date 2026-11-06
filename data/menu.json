@@ -1,0 +1,80 @@
+{
+  "currency": "R",
+  "categories": [
+    { "id": "coffee", "name": "Coffee" },
+    { "id": "tea", "name": "Tea" },
+    { "id": "pastries-sandwiches", "name": "Pastries & Sandwiches" }
+  ],
+  "addons": {
+    "extra-shot": { "label": "Extra espresso shot", "price": 10 },
+    "plant-milk": { "label": "Oat or almond milk", "price": 8 },
+    "warm-up":    { "label": "Warm it up for me", "price": 0 }
+  },
+  "items": [
+    {
+      "id": "classic-espresso",
+      "name": "Classic Espresso",
+      "category": "coffee",
+      "description": "A double shot of our signature house blend",
+      "price": 25,
+      "image": "images/classic-espresso-cup.jpg",
+      "alt": "Shot of espresso in a blue-grey cup on a dark marble table",
+      "width": 740, "height": 493,
+      "tags": ["coffee", "espresso", "strong", "hot", "black"],
+      "addons": ["extra-shot"],
+      "available": { "from": null, "until": null, "note": "Available all day" }
+    },
+    {
+      "id": "cappuccino",
+      "name": "Cappuccino",
+      "category": "coffee",
+      "description": "Espresso with steamed milk and a thick layer of foam",
+      "price": 35,
+      "image": "images/cappuccino-latte-art-white-cup.jpg",
+      "alt": "Cappuccino with latte art in a white cup on a wooden table",
+      "width": 700, "height": 377,
+      "tags": ["coffee", "milk", "foam", "hot", "latte art"],
+      "addons": ["extra-shot", "plant-milk"],
+      "available": { "from": null, "until": null, "note": "Available all day" }
+    },
+    {
+      "id": "rooibos-tea",
+      "name": "Rooibos Tea",
+      "category": "tea",
+      "description": "Locally sourced, organic Rooibos tea",
+      "price": 22,
+      "image": "images/rooibos-tea-glass-cup.jpg",
+      "alt": "Glass cup of red rooibos tea on a saucer",
+      "width": 740, "height": 740,
+      "tags": ["tea", "rooibos", "organic", "caffeine free", "hot", "local"],
+      "addons": ["plant-milk"],
+      "available": { "from": null, "until": null, "note": "Available all day" }
+    },
+    {
+      "id": "butter-croissant",
+      "name": "Butter Croissant",
+      "category": "pastries-sandwiches",
+      "description": "Freshly baked every morning",
+      "price": 30,
+      "image": "images/butter-croissant-on-plate.jpg",
+      "alt": "Golden butter croissant served on a plate with butter",
+      "width": 740, "height": 740,
+      "tags": ["pastry", "croissant", "butter", "baked", "breakfast", "vegetarian"],
+      "addons": ["warm-up"],
+      "available": { "from": null, "until": "14:00", "note": "Baked fresh each morning, available until 14:00" }
+    },
+    {
+      "id": "chicken-mayo-sandwich",
+      "name": "Chicken Mayo Sandwich",
+      "category": "pastries-sandwiches",
+      "description": "Toasted on artisanal sourdough bread",
+      "price": 55,
+      "image": "images/chicken-mayo-sandwich.jpg",
+      "alt": "Toasted chicken mayo sandwich with salad on a white plate",
+      "width": 740, "height": 493,
+      "tags": ["sandwich", "chicken", "lunch", "toasted", "sourdough", "savoury"],
+      "addons": ["warm-up"],
+      "available": { "from": "10:00", "until": null, "note": "Lunch item, served from 10:00" }
+    }
+  ]
+}

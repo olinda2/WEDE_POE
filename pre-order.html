@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Skip the queue! Pre-order your favourite Veloce Espresso drinks and food online for quick pickup.">
-    <title>Pre-Order | Veloce Espresso</title>
-    <!-- Google Fonts: Inter for body text, Playfair Display for headings/branding -->
+
+    <!-- Security - only allow scripts, styles, fonts and images from the places this site really uses -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+
+    <!-- SEO - title, description, keywords and robots instructions for search engines -->
+    <title>Pre-Order Coffee &amp; Food for Pickup | Veloce Espresso</title>
+    <meta name="description" content="Skip the queue at Veloce Espresso. Pre-order coffee, tea and food online, see the price and availability, and collect at your chosen branch.">
+    <meta name="keywords" content="pre-order coffee, order ahead, coffee pickup, cafe order online, Veloce Espresso, collect coffee, enquiry">
+    <meta name="author" content="Veloce Espresso">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2F4F3E">
+    <link rel="canonical" href="https://veloce-espresso.netlify.app/pre-order.html">
+
+    <!-- Social media sharing preview (Open Graph + Twitter) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Veloce Espresso">
+    <meta property="og:title" content="Pre-Order Coffee &amp; Food for Pickup | Veloce Espresso">
+    <meta property="og:description" content="Skip the queue at Veloce Espresso. Pre-order coffee, tea and food online, see the price and availability, and collect at your chosen branch.">
+    <meta property="og:url" content="https://veloce-espresso.netlify.app/pre-order.html">
+    <meta property="og:image" content="https://veloce-espresso.netlify.app/images/veloce-espresso-social-share.jpg">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Icons(logo) shown in the browser tab and on phone screens -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Google Fonts - Inter for body text, Playfair Display for headings/branding -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,73 +39,157 @@
 </head>
 <body>
 
+    <!-- Lets keyboard and screen reader users jump past the menu -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Header containing the logo and main navigation -->
     <header>
         <div class="logo">
-            <img src="images/ve-logo-watermark.png" alt="Veloce Espresso Logo">
+            <a href="index.html"><img src="images/veloce-espresso-logo.png" alt="Veloce Espresso Logo - go to the home page" width="500" height="406"></a>
         </div>
-        <nav>
+        <nav aria-label="Main navigation">
             <ul>
+                <!-- Navigation links to all pages. aria-current marks the page you are on -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="pre-order.html">Pre-Order</a></li>
+                <li><a href="pre-order.html" aria-current="page">Pre-Order</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h1>Pre-Order & Skip the Queue</h1>
-        <p>Use the form below to place your order ahead of time. We will have it ready for you when you arrive.</p>
+    <main id="main-content">
+        <h1>Pre-Order &amp; Skip the Queue</h1>
+        <p>Let’s get your order started! Place your order by filling in the form below. You can pay at the counter when you collect. Haven't decided what to order yet? Take a look at our <a href="menu.html">menu</a>.</p>
 
-        <!-- HTML Form with client-side validation -->
-        <form action="#" method="POST">
+        <!-- Shown by enquiry.js only if the menu data could not be loaded -->
+        <p class="form-response is-warning" id="enquiry-load-error" role="alert" hidden>Sorry, we could not load our menu and prices. Please refresh the page, or <a href="contact.html">contact us</a> to place your order.</p>
+
+        <!-- Enquiry form. All checking is done by js/validation.js and js/enquiry.js -->
+        <form id="enquiry-form" action="#" method="post">
+            <div class="form-summary" id="enquiry-summary" role="alert" hidden></div>
+
             <fieldset>
-                <legend>Customer Details</legend>
-                
-                <label for="fname">Full Name:</label><br>
-                <input type="text" id="fname" name="fname" required><br><br>
+                <legend>Your details</legend>
 
-                <label for="email">Email Address:</label><br>
-                <input type="email" id="email" name="email" required><br><br>
-                
-                <label for="phone">Phone Number:</label><br>
-                <input type="tel" id="phone" name="phone" required><br><br>
+                <div class="form-group">
+                    <label for="fname">Full name</label>
+                    <input type="text" id="fname" name="fname" autocomplete="name" required aria-describedby="fname-error">
+                    <span class="error-message" id="fname-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="e.g. 082 123 4567" required aria-describedby="phone-error">
+                    <span class="error-message" id="phone-error"></span>
+                </div>
             </fieldset>
 
             <fieldset>
-                <legend>Order Details</legend>
-                
-                <label for="item">Select Primary Item:</label><br>
-                <select id="item" name="item" required>
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="espresso">Classic Espresso</option>
-                    <option value="cappuccino">Cappuccino</option>
-                    <option value="rooibos">Rooibos Tea</option>
-                    <option value="croissant">Butter Croissant</option>
-                    <option value="sandwich">Chicken Mayo Sandwich</option>
-                </select><br><br>
+                <legend>Your order</legend>
 
-                <label for="pickup-time">Preferred Pickup Time:</label><br>
-                <input type="time" id="pickup-time" name="pickup-time" required><br><br>
+                <div class="form-group">
+                    <label for="branch">Collection branch</label>
+                    <select id="branch" name="branch" required aria-describedby="branch-error">
+                        <option value="">Choose a branch</option>
+                        <option value="city-centre">Main Branch - City Centre</option>
+                        <option value="campus">Campus Branch - University District</option>
+                    </select>
+                    <span class="error-message" id="branch-error"></span>
+                </div>
 
-                <label for="notes">Special Instructions (Optional):</label><br>
-                <textarea id="notes" name="notes" rows="4" cols="50" placeholder="E.g., Extra shot, almond milk..."></textarea><br><br>
+                <div class="form-group">
+                    <label for="item">Item</label>
+                    <select id="item" name="item" required aria-describedby="item-error">
+                        <option value="">Choose an item</option>
+                    <option value="classic-espresso">Classic Espresso - R 25.00</option>
+                    <option value="cappuccino">Cappuccino - R 35.00</option>
+                    <option value="rooibos-tea">Rooibos Tea - R 22.00</option>
+                    <option value="butter-croissant">Butter Croissant - R 30.00</option>
+                    <option value="chicken-mayo-sandwich">Chicken Mayo Sandwich - R 55.00</option>
+                    </select>
+                    <span class="error-message" id="item-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="20" value="1" required aria-describedby="quantity-error">
+                    <span class="error-message" id="quantity-error"></span>
+                </div>
+
+                <!-- The extras shown here change depending on the item chosen -->
+                <div class="form-group">
+                    <span class="group-label" id="addons-label">Extras (optional)</span>
+                    <div id="addons-list" role="group" aria-labelledby="addons-label">
+                        <p class="field-hint">Choose an item first to see the extras you can add.</p>
+                    </div>
+                </div>
             </fieldset>
 
-            <button type="submit" class="submit-btn">Place Pre-Order</button>
+            <fieldset>
+                <legend>Pickup time</legend>
+
+                <div class="form-group">
+                    <label for="pickup-date">Pickup date</label>
+                    <input type="date" id="pickup-date" name="pickup-date" required aria-describedby="pickup-date-error">
+                    <span class="error-message" id="pickup-date-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickup-time">Pickup time</label>
+                    <input type="time" id="pickup-time" name="pickup-time" required aria-describedby="pickup-time-error">
+                    <span class="error-message" id="pickup-time-error"></span>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Anything else?</legend>
+
+                <div class="form-group">
+                    <label for="notes">Special instructions (optional)</label>
+                    <textarea id="notes" name="notes" rows="3" maxlength="220" aria-describedby="notes-counter notes-error"></textarea>
+                    <span class="field-hint" id="notes-counter"></span>
+                    <span class="error-message" id="notes-error"></span>
+                </div>
+
+                <div class="form-group checkbox-row">
+                    <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-error">
+                    <label for="consent">I am happy for Veloce Espresso to contact me about this order.</label>
+                </div>
+                <span class="error-message" id="consent-error"></span>
+            </fieldset>
+
+            <p class="live-total">Estimated total: <output id="live-total" for="item quantity">R 0.00</output></p>
+
+            <button type="submit" class="submit-btn">Check price &amp; availability</button>
         </form>
+
+        <!-- The answer (price and availability) appears here after the form is sent -->
+        <section class="form-response" id="enquiry-response" tabindex="-1" aria-live="polite" hidden></section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Veloce Espresso. All rights reserved.</p>
-        <nav>
+        <nav aria-label="Footer navigation">
             <ul>
                 <li><a href="contact.html">Find Us</a></li>
-                <li><a href="about.html">Our Story</a></li>
             </ul>
         </nav>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/enquiry.js"></script>
 
 </body>
 </html>
